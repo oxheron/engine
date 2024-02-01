@@ -1,0 +1,29 @@
+[
+  {
+    "arguments": [
+      "/usr/bin/clang++",
+      "-std=c++20",
+      "-c",
+      "-Isrc",
+      "-Ilib",
+      "-Ilib/engine",
+      "-Ilib/engine/lib/json/single_include",
+      "-Ilib/engine/lib/bgfx/include",
+      "-Ilib/engine/lib/bimg/include",
+      "-Ilib/engine/lib/bx/include",
+      "-Ilib/engine/lib/glfw/include",
+      "-Ilib/engine/lib/cgltf/include",
+      "-Ilib/engine/glm",
+      "-Wall",
+      "-g",
+      "-DDEBUG=1",
+      "-DBX_CONFIG_DEBUG=1",
+      "-o",
+      "src/renderpass/renderpass.o",
+      "src/renderpass/renderpass.cpp"
+    ],
+    "directory": "/devel/engine",
+    "file": "/devel/engine/src/renderpass/renderpass.cpp",
+    "output": "/devel/engine/src/renderpass/renderpass.o"
+  }
+]
