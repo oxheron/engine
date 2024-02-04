@@ -22,7 +22,7 @@ bgfx::Encoder* render_framebuffer(bgfx::FrameBufferHandle framebuffer,
     if (!encoder) encoder = bgfx::begin();
 
     encoder->setTexture(stage, handle, getTexture(framebuffer, attachment));
-    draw_vertex_count(3, encoder);
+    encoder->setVertexCount(3);
 
     return encoder; 
 }
