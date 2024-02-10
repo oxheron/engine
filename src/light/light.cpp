@@ -4,7 +4,7 @@
 #include "renderer/batchmanager.h"
 
 // std
-#include <math>
+#include <cmath>
 
 void PointLight::upload(BatchManager* bm) 
 {
@@ -17,7 +17,7 @@ Buffer<uint8_t> PointLight::get_model_buffer()
 {
     calc_scale(); 
     memcpy((void*) model_buffer.data(), (void*) glm::value_ptr(pos_scale), 
-        sizeof(glm::vec4)):
+        sizeof(glm::vec4));
     memcpy((char*) model_buffer.data() + sizeof(glm::vec4), 
         (void*) glm::value_ptr(ambient_squared), sizeof(glm::vec4));
     memcpy((char*) model_buffer.data() + sizeof(glm::vec4) * 2, 
