@@ -32,6 +32,9 @@ public:
 
     ~Framebuffer();
 
+    void set_view_transform(bgfx::ViewId id) 
+        { bgfx::setViewRect(id, 0, 0, width, height); }; 
+
     bgfx::Encoder* render_framebuffer(bgfx::UniformHandle handle, 
         uint8_t stage = 0, uint8_t attachment = 0, 
         bgfx::Encoder* encoder = nullptr);
