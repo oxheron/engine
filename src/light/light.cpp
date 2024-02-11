@@ -13,6 +13,11 @@ void PointLight::upload(BatchManager* bm)
     obj_index = base->get_batch()->add_instance(this, base->get_index());
 }
 
+void PointLight::update()
+{
+    base->get_batch()->edit_model_data(this, obj_index);
+}
+
 Buffer<uint8_t> PointLight::get_model_buffer() 
 {
     calc_scale(); 

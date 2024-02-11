@@ -22,6 +22,16 @@ private:
     size_t obj_index;
    
 public:
+    PointLight(BaseInstance<PosOnly>* base)
+    {
+        this->base = base;
+    }
+
+    ~PointLight()
+    {
+        base->get_batch()->remove_instance(obj_index);
+    }
+
     glm::vec3 get_ambient() { return glm::vec3(ambient); }
     void set_ambient(glm::vec3 ambient) 
         { this->ambient = glm::vec4(glm::vec3(ambient), 1); }
@@ -41,6 +51,7 @@ public:
     void set_pos(glm::vec3 pos) { pos_scale = glm::vec4(pos, pos_scale.w); }
 
     void upload(BatchManager* bm = nullptr) override;
+    void update();
 
     Buffer<uint8_t> get_model_buffer() override;
     Buffer<uint8_t> get_vertex_buffer() override { return base->get_vertex_buffer(); };
