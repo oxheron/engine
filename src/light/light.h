@@ -25,6 +25,7 @@ public:
     PointLight(BaseInstance<PosOnly>* base)
     {
         this->base = base;
+        model_buffer.resize(sizeof(glm::vec4) * 4);
     }
 
     ~PointLight()
