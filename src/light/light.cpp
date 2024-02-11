@@ -29,9 +29,9 @@ Buffer<uint8_t> PointLight::get_model_buffer()
 
 void PointLight::calc_scale()
 {
-    pos_scale.w = (-diffuse_linear.w + 
-        std::sqrt(diffuse_linear.w * diffuse_linear.w - 
-            4 * ambient_squared.w * (specular_constant.w - 256 * 
-            glm::max(glm::max(diffuse_linear.x, diffuse_linear.y), 
-            diffuse_linear.z)))) / 2 * ambient_squared.w;
+    pos_scale.w = (-att.y + 
+        std::sqrt(att.y * att.y - 
+            4 * att.x * (att.z - 256 * 
+            glm::max(glm::max(color.x, color.y), 
+            color.z)))) / 2 * att.x;
 }

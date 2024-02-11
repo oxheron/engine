@@ -34,7 +34,7 @@ public:
         { return glm::vec3(att); };
     void set_att(glm::vec3 att)
     { 
-        this->att = att;
+        this->att = glm::vec4(att, 1);
     }
 
     glm::vec3 get_pos() { return glm::vec3(pos_scale); };
@@ -48,7 +48,7 @@ public:
 
     size_t animation_start() override { return 0; }
     size_t animation_length() override 
-        { return get_index_buffer.size() / sizeof(uint32_t); };
+        { return get_index_buffer().size() / sizeof(uint32_t); };
 
 private:
     void calc_scale();
