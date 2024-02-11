@@ -12,9 +12,9 @@ private:
 
     glm::vec4 pos_scale;
 
-    glm::vec4 ambient_squared;
-    glm::vec4 diffuse_linear;
-    glm::vec4 specular_constant;
+    glm::vec4 ambient;
+    glm::vec4 color;
+    glm::vec4 att;
 
     // Condensed form of all of the data
     std::vector<uint8_t> model_buffer;
@@ -22,25 +22,19 @@ private:
     size_t obj_index;
    
 public:
-    glm::vec3 get_ambient() { return glm::vec3(ambient_squared); }
+    glm::vec3 get_ambient() { return glm::vec3(ambient); }
     void set_ambient(glm::vec3 ambient) 
-        { ambient_squared = glm::vec4(glm::vec3(ambient), ambient_squared.w); }
+        { this->ambient = glm::vec4(glm::vec3(ambient), 1); }
 
-    glm::vec3 get_diffuse() { return glm::vec3(diffuse_linear); }
-    void set_diffuse(glm::vec3 diffuse) 
-        { diffuse_linear = glm::vec4(glm::vec3(diffuse), diffuse_linear.w); }
-
-    glm::vec3 get_specular() { return glm::vec3(specular_constant); }
-    void set_specular(glm::vec3 specular) 
-        { specular_constant = glm::vec4(glm::vec3(specular), specular_constant.w); }
+    glm::vec3 get_color() { return glm::vec3(color); }
+    void set_color(glm::vec3 color) 
+        { this->color = glm::vec4(glm::vec3(color), 1); }
 
     glm::vec3 get_att() 
-        { return glm::vec3(ambient_squared.w, diffuse_linear.w, specular_constant.w); };
+        { return glm::vec3(att); };
     void set_att(glm::vec3 att)
     { 
-        ambient_squared.w = att.x; 
-        diffuse_linear.w = att.y;
-        specular_constant.w = att.z;
+        this->att = att;
     }
 
     glm::vec3 get_pos() { return glm::vec3(pos_scale); };
@@ -51,6 +45,10 @@ public:
     Buffer<uint8_t> get_model_buffer() override;
     Buffer<uint8_t> get_vertex_buffer() override { return base->get_vertex_buffer(); };
     Buffer<uint8_t> get_index_buffer() override { return base->get_index_buffer(); };
+
+    size_t animation_start() override { return 0; }
+    size_t animation_length() override 
+        { return get_index_buffer.size() / sizeof(uint32_t); };
 
 private:
     void calc_scale();

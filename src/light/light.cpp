@@ -19,11 +19,11 @@ Buffer<uint8_t> PointLight::get_model_buffer()
     memcpy((void*) model_buffer.data(), (void*) glm::value_ptr(pos_scale), 
         sizeof(glm::vec4));
     memcpy((char*) model_buffer.data() + sizeof(glm::vec4), 
-        (void*) glm::value_ptr(ambient_squared), sizeof(glm::vec4));
+        (void*) glm::value_ptr(ambient), sizeof(glm::vec4));
     memcpy((char*) model_buffer.data() + sizeof(glm::vec4) * 2, 
-        (void*) glm::value_ptr(diffuse_linear), sizeof(glm::vec4));
+        (void*) glm::value_ptr(color), sizeof(glm::vec4));
     memcpy((char*) model_buffer.data() + sizeof(glm::vec4) * 3, 
-        (void*) glm::value_ptr(specular_constant), sizeof(glm::vec4));
+        (void*) glm::value_ptr(att), sizeof(glm::vec4));
     return Buffer<uint8_t>(model_buffer.data(), model_buffer.size());
 }
 
